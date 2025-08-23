@@ -66,6 +66,28 @@
             width: 16px;
         }
 
+        .download-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #fff;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #e2e8f0;
+        }
+
         .content {
             padding: 40px;
         }
@@ -256,6 +278,10 @@
         <div class="header">
             <h1>Moataz Sherif Salah EL-Sharaby</h1>
             <h2>VR & Game Developer</h2>
+            <div class="download-buttons">
+                <a href="Moataz_Sherif_CV.pdf" class="download-btn" download>Download CV (PDF)</a>
+                <a href="Moataz_Sherif_Resume.pdf" class="download-btn" download>Download Resume (PDF)</a>
+            </div>
             <div class="contact-info">
                 <div class="contact-item">
                     <i>📱</i>
