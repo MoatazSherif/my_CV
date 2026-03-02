@@ -5,137 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Moataz Sherif</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: linear-gradient(180deg, #0b0c10 0%, #141820 100%);
+            --accent: #f8f8f8;
+            --muted: #a0a0a0;
+            --card: rgba(25,25,30,0.9);
+            --border: rgba(255,255,255,0.08);
+            --primary: #4dabf7;
         }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { overflow-x: hidden; font-family: Inter, system-ui, Roboto, Arial, sans-serif; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--accent);
             line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
         }
-
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-
-        .header p {
-            opacity: 0.9;
-            font-size: 1.05em;
-            margin-bottom: 25px;
-        }
-
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 20px 0; }
+        .header h1 { font-size: clamp(22px, 3.5vw, 32px); color: var(--accent); }
+        .header p { color: var(--muted); margin-top: 4px; margin-bottom: 16px; }
         .nav-link {
             display: inline-block;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--accent);
             text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s;
+            transition: all 0.2s ease;
         }
-
-        .nav-link:hover {
-            background: rgba(255,255,255,0.35);
-        }
-
-        .content {
-            padding: 40px;
-        }
-
-        .section-title {
-            font-size: 1.5em;
-            color: #667eea;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #667eea;
-            font-weight: 600;
-        }
-
+        .nav-link:hover { background: rgba(255,255,255,0.05); }
+        .content { padding: 20px 0 40px; }
+        .section-title { font-size: 24px; color: #fff; margin-bottom: 8px; }
+        .content > p { color: var(--muted); margin-bottom: 25px; }
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 24px;
         }
-
         .video-item {
-            background: #f8f9fa;
-            border-radius: 8px;
+            background: var(--card);
+            border-radius: 12px;
             overflow: hidden;
-            border-left: 4px solid #667eea;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
         }
-
+        .video-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 26px rgba(0,0,0,0.8);
+        }
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            background: #1a1a1a;
+            background: #000;
         }
-
         .video-wrapper iframe,
         .video-wrapper video {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             object-fit: contain;
         }
-
-        .video-info {
-            padding: 20px;
-        }
-
-        .video-info h3 {
-            color: #333;
-            margin-bottom: 8px;
-            font-size: 1.2em;
-        }
-
-        .video-info p {
-            color: #555;
-            font-size: 0.95em;
-            line-height: 1.6;
-        }
-
-        .video-subsection {
-            margin-bottom: 35px;
-        }
-
-        .video-subsection:last-child {
-            margin-bottom: 0;
-        }
-
+        .video-info { padding: 16px 20px; }
+        .video-info h3 { color: #fff; margin-bottom: 8px; font-size: 1.1em; }
+        .video-info p { color: var(--muted); font-size: 0.9em; line-height: 1.5; }
+        .video-subsection { margin-bottom: 40px; }
+        .video-subsection:last-child { margin-bottom: 0; }
         .video-subsection h3 {
-            font-size: 1.2em;
-            color: #764ba2;
-            margin-bottom: 15px;
-            font-weight: 600;
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 16px;
+            text-shadow: 0 0 8px rgba(77,171,247,0.6);
         }
-
         .width-toggle {
             position: fixed;
             top: 12px;
@@ -144,64 +88,26 @@
             gap: 6px;
             z-index: 100;
         }
-
         .width-btn {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             padding: 0;
-            border: 1px solid rgba(102, 126, 234, 0.5);
-            background: white;
-            color: #667eea;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--primary);
             border-radius: 8px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: all 0.2s;
         }
-
-        .width-btn:hover {
-            background: #f0f0ff;
-            border-color: #667eea;
-            box-shadow: 0 2px 12px rgba(102, 126, 234, 0.25);
-        }
-
-        .width-btn.active {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-
-        .width-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        body.layout-full .container {
-            max-width: none;
-            width: 96%;
-            margin: 15px auto;
-        }
-
-        @media print {
-            .width-toggle {
-                display: none !important;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 25px 20px;
-            }
-            .header h1 {
-                font-size: 1.8em;
-            }
-            .content {
-                padding: 20px;
-            }
-        }
+        .width-btn:hover { background: rgba(255,255,255,0.05); }
+        .width-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .width-btn svg { width: 20px; height: 20px; fill: currentColor; }
+        body.layout-full .container { max-width: none; width: 96%; margin: 15px auto; }
+        @media print { .width-toggle { display: none !important; } }
+        @media (max-width: 768px) { .content { padding: 20px 0 30px; } }
     </style>
 </head>
 <body>
@@ -214,205 +120,71 @@
         </button>
     </div>
     <div class="container">
-        <div class="header">
-            <h1>Portfolio</h1>
-            <p>Project demos and showreel from my VR & game development work</p>
-            <a href="index.html" class="nav-link">← Back to CV</a>
-        </div>
+        <header class="header">
+            <div>
+                <h1>Portfolio</h1>
+                <p>Project demos and showreel from my VR & game development work</p>
+            </div>
+            <a href="index.html" class="nav-link">← Back to home</a>
+        </header>
 
         <div class="content">
             <h2 class="section-title">Project Videos</h2>
-            <p style="color: #555; margin-bottom: 25px;">Demos from my portfolio — VR simulations and game builds.</p>
+            <p>Demos from my portfolio — VR simulations and game builds. Videos are hosted on YouTube.</p>
 
+            <!-- Paste your YouTube video IDs in the script below (Edit builds.html, find PORTFOLIO_VIDEOS). -->
             <div class="video-subsection">
                 <h3>VR Simulate</h3>
-                <div class="video-grid">
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/SEC%20PowerRestorationDistribution.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>SEC Power Restoration Distribution</h3>
-                            <p>VR simulation — power restoration distribution workflow.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/DownloadandUploadTheProtectionRelayParameterTypeFANOX.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Protection Relay (FANOX)</h3>
-                            <p>VR simulation — protection relay parameter type FANOX.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/VR%20-%20KSA%20-%20Exam%20System.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>KSA Exam System</h3>
-                            <p>VR simulation — exam system.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/VR%20-%20Kids%20Room.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Kids Room</h3>
-                            <p>VR simulation — kids room experience.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/VR%20-%20Educational%20Heart%20Scenario.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Educational Heart Scenario</h3>
-                            <p>VR simulation — educational heart scenario.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/VR%20-%20Engine%20Odyssey.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Engine Odyssey</h3>
-                            <p>VR simulation — engine odyssey.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/VR%20-%20Scientific%20Experiments.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Scientific Experiments</h3>
-                            <p>VR simulation — scientific experiments.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/VR%20-%20Fire%20Fighting.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Fire Fighting</h3>
-                            <p>VR simulation — fire fighting.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/VR%20-%20Germinator.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Germinator</h3>
-                            <p>VR simulation — Germinator.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/VR%20-%20Guardians%20of%20the%20Gum.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Guardians of the Gum</h3>
-                            <p>VR simulation — Guardians of the Gum.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/VR%20-%20Anatomy%20V%20LAB.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Anatomy V LAB</h3>
-                            <p>VR simulation — anatomy lab.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/VR%20-%20Recycle%20Event.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Recycle Event</h3>
-                            <p>VR simulation — recycle event.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/VR%20-%20Learn%20ABC.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Learn ABC</h3>
-                            <p>VR simulation — Learn ABC.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/VR%20-%20Forklift.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Forklift</h3>
-                            <p>VR simulation — forklift.</p>
-                        </div>
-                    </div>
-                </div>
+                <div class="video-grid" id="vr-grid"></div>
             </div>
-
             <div class="video-subsection">
                 <h3>MVP</h3>
-                <div class="video-grid">
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/MVP/jump.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Jump</h3>
-                            <p>Gameplay demo — jump mechanic.</p>
-                        </div>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/MVP/screem.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3>Screem</h3>
-                            <p>Gameplay / screen capture demo.</p>
-                        </div>
-                    </div>
-                </div>
+                <div class="video-grid" id="mvp-grid"></div>
             </div>
         </div>
     </div>
+    <script>
+        // Paste your YouTube video IDs here (from youtube.com/watch?v=VIDEO_ID). Leave "" to hide that slot.
+        var PORTFOLIO_VIDEOS = {
+            vrSimulate: [
+                { id: "XNKIoyXmVgw", title: "SEC Power Restoration Distribution", desc: "VR simulation — power restoration distribution workflow." },
+                { id: "", title: "Protection Relay (FANOX)", desc: "VR simulation — protection relay parameter type FANOX." },
+                { id: "", title: "KSA Exam System", desc: "VR simulation — exam system." },
+                { id: "", title: "Kids Room", desc: "VR simulation — kids room experience." },
+                { id: "wnkDvOVwHPw", title: "Educational Heart Scenario", desc: "VR simulation — educational heart scenario." },
+                { id: "rkRi65sfzHU", title: "Engine Odyssey", desc: "VR simulation — engine odyssey." },
+                { id: "", title: "Scientific Experiments", desc: "VR simulation — scientific experiments." },
+                { id: "gCw65u1POzM", title: "Fire Fighting", desc: "VR simulation — fire fighting." },
+                { id: "", title: "Germinator", desc: "VR simulation — Germinator." },
+                { id: "", title: "Guardians of the Gum", desc: "VR simulation — Guardians of the Gum." },
+                { id: "zv2ezlmZNxY", title: "Anatomy V LAB", desc: "VR simulation — anatomy lab." },
+                { id: "", title: "Recycle Event", desc: "VR simulation — recycle event." },
+                { id: "", title: "Learn ABC", desc: "VR simulation — Learn ABC." },
+                { id: "Y1tQi7M0_jw", title: "Forklift", desc: "VR simulation — forklift." }
+            ],
+            mvp: [
+                { id: "qt2zxsBpT2Y", title: "Jump", desc: "Gameplay demo — jump mechanic." },
+                { id: "kjjYk8WJMmQ", title: "Screem", desc: "Gameplay / screen capture demo." }
+            ]
+        };
+        function renderVideoGrid(containerId, items) {
+            var container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = items.map(function(v) {
+                if (!v.id) return "";
+                return '<div class="video-item">' +
+                    '<div class="video-wrapper">' +
+                    '<iframe src="https://www.youtube.com/embed/' + v.id + '" title="' + (v.title || "") + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>' +
+                    '</div>' +
+                    '<div class="video-info"><h3>' + (v.title || "") + '</h3><p>' + (v.desc || "") + '</p></div>' +
+                    '</div>';
+            }).filter(Boolean).join("");
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            renderVideoGrid("vr-grid", PORTFOLIO_VIDEOS.vrSimulate);
+            renderVideoGrid("mvp-grid", PORTFOLIO_VIDEOS.mvp);
+        });
+    </script>
     <script>
         (function() {
             var KEY = 'cv-layout-portfolio';

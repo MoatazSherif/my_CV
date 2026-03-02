@@ -3,452 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moataz Sherif - VR & Game Developer</title>
+    <title>Moataz Sherif — VR & Game Developer</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: linear-gradient(180deg, #0b0c10 0%, #141820 100%);
+            --accent: #f8f8f8;
+            --muted: #a0a0a0;
+            --card: rgba(25,25,30,0.9);
+            --border: rgba(255,255,255,0.08);
+            --primary: #4dabf7;
         }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; overflow-x: hidden; font-family: Inter, system-ui, Roboto, Arial, sans-serif; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--accent);
             line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
         }
-
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 20px 0; }
+        .brand { display: flex; gap: 16px; align-items: center; }
+        .logo {
+            width: 80px; height: 80px; border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--card);
+            box-shadow: 0 0 12px rgba(255,255,255,0.05);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; font-weight: 700; color: var(--primary);
+        }
+        h1 { font-size: clamp(22px, 3.5vw, 32px); color: var(--accent); }
+        p.lead { color: var(--muted); margin-top: 4px; }
+        .nav-icons { display: flex; gap: 12px; align-items: center; }
+        .nav-icon {
+            width: 36px; height: 36px;
+            display: flex; align-items: center; justify-content: center;
             border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            transition: all 0.2s ease;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+        .nav-icon svg { width: 20px; height: 20px; fill: currentColor; }
+        .nav-icon:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.6); }
+        .nav-icon a { color: inherit; display: flex; align-items: center; justify-content: center; }
+        .hero { margin-top: 30px; }
+        .about {
+            background: var(--card);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
+        .about::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 40%;
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), transparent);
+            pointer-events: none;
         }
-
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-
-        .header h2 {
-            font-size: 1.3em;
-            font-weight: 300;
-            opacity: 0.9;
-            margin-bottom: 20px;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9em;
-        }
-
-        .contact-item i {
-            width: 16px;
-        }
-
-        .download-buttons {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .download-btn {
+        .about p { margin-bottom: 16px; color: var(--accent); }
+        .btn {
             display: inline-block;
-            background: #fff;
-            color: #667eea;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--accent);
             text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s, color 0.3s;
+            transition: all 0.2s ease;
+            margin-right: 8px; margin-bottom: 8px;
         }
-
-        .download-btn:hover {
-            background-color: #e2e8f0;
+        .btn:hover { background: rgba(255,255,255,0.05); }
+        .btn-primary {
+            background: linear-gradient(145deg, #4dabf7, #228be6);
+            color: #fff;
+            border: none;
+            box-shadow: 0 3px 12px rgba(77,171,247,0.3);
         }
-
-        .content {
-            padding: 40px;
+        .btn-primary:hover {
+            background: linear-gradient(145deg, #64c0ff, #339af0);
         }
-
-        .section {
-            margin-bottom: 40px;
+        .skills {
+            background: var(--card);
+            margin-top: 30px;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
         }
-
-        .section-title {
-            font-size: 1.5em;
-            color: #667eea;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #667eea;
-            font-weight: 600;
-        }
-
-        .summary {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #555;
-            text-align: justify;
-        }
-
+        .skills h2 { margin-bottom: 20px; font-size: 24px; color: #fff; text-align: center; }
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 20px;
-            margin-top: 20px;
         }
-
         .skill-category {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.04);
         }
-
-        .skill-category h4 {
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            padding: 5px 0;
+        .skill-category h3 { font-size: 18px; color: var(--primary); margin-bottom: 10px; text-shadow: 0 0 8px rgba(77,171,247,0.6); }
+        .skill-category ul { list-style: none; padding-left: 0; }
+        .skill-category ul li {
             position: relative;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: var(--accent);
             padding-left: 20px;
         }
-
-        .skill-list li:before {
-            content: "▸";
-            color: #667eea;
+        .skill-category ul li::before {
+            content: "";
             position: absolute;
             left: 0;
+            top: 7px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #4dabf7 0%, #1a5bbf 80%);
+            box-shadow: 0 0 6px #4dabf7, 0 0 12px #4dabf7;
+            animation: glowPulse 2s infinite;
         }
-
-        .experience-item {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
+        @keyframes glowPulse {
+            0% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.4); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.9; }
         }
-
-        .job-title {
-            font-size: 1.2em;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .company-info {
-            color: #667eea;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-
-        .job-duration {
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-        }
-
-        .job-description {
-            list-style: none;
-        }
-
-        .job-description li {
-            padding: 5px 0;
+        .projects { margin-top: 40px; }
+        .projects h2 { margin-bottom: 20px; font-size: 24px; color: #fff; }
+        .projects-card {
+            background: var(--card);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
             position: relative;
-            padding-left: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
         }
-
-        .job-description li:before {
-            content: "•";
-            color: #667eea;
-            position: absolute;
-            left: 0;
-            font-weight: bold;
+        .projects-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 26px rgba(0,0,0,0.8), inset 0 0 40px rgba(255,255,255,0.06);
         }
-
-        .education-item {
-            margin-bottom: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-
-        .degree {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .institution {
-            color: #667eea;
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-
-        .graduation-year {
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        .certifications {
-            list-style: none;
-        }
-
-        .certifications li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .certifications li:last-child {
-            border-bottom: none;
-        }
-
-        .cert-name {
-            font-weight: 500;
-            color: #333;
-        }
-
-        .cert-issuer {
-            color: #667eea;
-            font-size: 0.9em;
-        }
-
-        .cert-date {
-            color: #666;
-            font-size: 0.9em;
-        }
-
         .video-preview-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
-            margin-top: 15px;
+            margin-top: 16px;
         }
-
         .video-preview-item {
-            background: #f8f9fa;
+            background: rgba(255,255,255,0.03);
             border-radius: 8px;
             overflow: hidden;
-            border-left: 4px solid #667eea;
+            border: 1px solid var(--border);
         }
-
         .video-preview-wrapper {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            background: #1a1a1a;
+            background: #000;
         }
-
-        .video-preview-wrapper video {
+        .video-preview-wrapper iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
         }
-
-        .video-preview-item .video-caption {
-            padding: 12px 15px;
-            font-size: 0.95em;
-            font-weight: 500;
-            color: #333;
+        .video-caption { padding: 12px; font-size: 14px; color: var(--accent); }
+        .btn-container { margin-top: 20px; text-align: center; }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--muted);
+            padding: 20px 0;
+            border-top: 1px solid var(--border);
+            font-size: 14px;
         }
-
-        .see-more-videos {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 24px;
-            background: #667eea;
-            color: white !important;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s, transform 0.2s;
-        }
-
-        .see-more-videos:hover {
-            background: #5568d3;
-            transform: translateY(-1px);
-        }
-
-        .width-toggle {
-            position: fixed;
-            top: 12px;
-            right: 12px;
-            display: flex;
-            gap: 6px;
-            z-index: 100;
-        }
-
-        .width-btn {
-            width: 40px;
-            height: 40px;
-            padding: 0;
-            border: 1px solid rgba(102, 126, 234, 0.5);
-            background: white;
-            color: #667eea;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .width-btn:hover {
-            background: #f0f0ff;
-            border-color: #667eea;
-            box-shadow: 0 2px 12px rgba(102, 126, 234, 0.25);
-        }
-
-        .width-btn.active {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-
-        .width-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        body.layout-full .container {
-            max-width: none;
-            width: 96%;
-            margin: 15px auto;
-        }
-
         @media (max-width: 768px) {
-            .video-preview-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media print {
-            body {
-                background: white;
-            }
-            .container {
-                box-shadow: none;
-                margin: 0;
-            }
-            .section:has(.video-preview-grid) {
-                display: none;
-            }
-            .width-toggle {
-                display: none !important;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 20px;
-            }
-            .header h1 {
-                font-size: 2em;
-            }
-            .content {
-                padding: 20px;
-            }
-            .contact-info {
-                flex-direction: column;
-                gap: 10px;
-            }
+            .video-preview-grid { grid-template-columns: 1fr; }
+            header { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
-    <div class="width-toggle">
-        <button type="button" class="width-btn" id="btn-full" aria-label="Full width layout" title="Full width">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-        </button>
-        <button type="button" class="width-btn active" id="btn-normal" aria-label="Normal width layout" title="Normal width">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 5h4v14H5V5zm10 0h4v14h-4V5zM7 7v10h2V7H7zm8 0v10h2V7h-2z"/></svg>
-        </button>
-    </div>
     <div class="container">
-        <div class="header">
-            <h1>Moataz Sherif Salah EL-Sharaby</h1>
-            <h2>VR & Game Developer</h2>
-            <div class="download-buttons">
-                <a href="Moataz_Sherif_CV.pdf" class="download-btn" download>Download CV (PDF)</a>
-                <a href="Moataz_Sherif_Resume.pdf" class="download-btn" download>Download Resume (PDF)</a>
-                <a href="builds.html" class="download-btn">Portfolio</a>
-            </div>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i>📱</i>
-                    <span>(+20) 1159221235</span>
-                </div>
-                <div class="contact-item">
-                    <i>✉️</i>
-                    <span>motazsherif126@gmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <i>📍</i>
-                    <span>5th Settlement, New Cairo, Cairo, Egypt</span>
-                </div>
-                <div class="contact-item">
-                    <i>🔗</i>
-                    <span><a href="www.linkedin.com/in/moatazelsharaby/" target="_blank">linkedin.com/in/moataz-sherif</a></span>
+        <header>
+            <div class="brand">
+                <div class="logo">MS</div>
+                <div>
+                    <h1>Moataz Sherif Salah EL-Sharaby</h1>
+                    <p class="lead">VR & Game Developer · Unity · XR · Mobile</p>
                 </div>
             </div>
-        </div>
+            <div class="nav-icons">
+                <a href="https://www.linkedin.com/in/moatazelsharaby/" target="_blank" rel="noopener" class="nav-icon" title="LinkedIn" style="color:#0077b5;background:#fff;">
+                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="mailto:motazsherif126@gmail.com" class="nav-icon" title="Email" style="color:#d14836;background:#fff;">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </a>
+                <a href="tel:+201159221235" class="nav-icon" title="Phone" style="color:#34a853;background:#fff;">
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                </a>
+            </div>
+        </header>
 
-        <div class="content">
-            <div class="section">
-                <h3 class="section-title">Professional Summary</h3>
-                <p class="summary">
-                    Passionate and results-driven VR/Game Developer with over 3 years of experience in creating immersive, innovative experiences using Unity and C#. Proven ability to contribute to the full project lifecycle, from design and feature implementation to optimization and bug fixing. Seeking to apply my expertise in interactive design and XR development to craft captivating virtual realities for a forward-thinking company.
+        <div class="hero">
+            <section class="about">
+                <h2 style="margin-bottom:12px;font-size:20px;color:#fff;">About</h2>
+                <p>
+                    Hi, I'm Moataz Sherif, a VR & Game Developer passionate about creating immersive experiences. With over 3 years of experience in Unity and C#, I've contributed to the full project lifecycle—from design and feature implementation to optimization and bug fixing. I specialize in XR development, gameplay mechanics, and cross-platform mobile games for iOS and Android.
                 </p>
-            </div>
+                <p>
+                    I enjoy solving design and technical challenges and am always exploring new ways to make games more dynamic, immersive, and enjoyable.
+                </p>
+                <div class="btn-container">
+                    <a href="cv.html" class="btn btn-primary">View CV</a>
+                    <a href="resume.html" class="btn">View Resume</a>
+                    <a href="builds.html" class="btn btn-primary">Portfolio</a>
+                </div>
+            </section>
 
-            <div class="section">
-                <h3 class="section-title">Technical Skills</h3>
+            <section class="skills">
+                <h2>Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h4>VR/AR Development</h4>
-                        <ul class="skill-list">
+                        <h3>🎮 VR/AR Development</h3>
+                        <ul>
                             <li>Unity Engine</li>
                             <li>XR Development</li>
-                            <li>Cross-Platform Mobile Games (iOS/Android)</li>
+                            <li>Cross-Platform Mobile (iOS/Android)</li>
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h4>Game Development</h4>
-                        <ul class="skill-list">
+                        <h3>🎯 Game Development</h3>
+                        <ul>
                             <li>Gameplay Mechanics</li>
                             <li>Level Design</li>
                             <li>AI/NPC Logic</li>
@@ -457,16 +250,16 @@
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h4>Programming Languages</h4>
-                        <ul class="skill-list">
+                        <h3>💻 Programming</h3>
+                        <ul>
                             <li>C#</li>
                             <li>C++</li>
                             <li>Python</li>
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h4>Tools & Technologies</h4>
-                        <ul class="skill-list">
+                        <h3>🧩 Tools & Tech</h3>
+                        <ul>
                             <li>Git Version Control</li>
                             <li>Agile Project Management</li>
                             <li>UiPath (RPA)</li>
@@ -474,16 +267,8 @@
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h4>IT & Infrastructure</h4>
-                        <ul class="skill-list">
-                            <li>Hardware/Software Troubleshooting</li>
-                            <li>Network Setup & Configuration</li>
-                            <li>Data Security & Backup</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Professional Skills</h4>
-                        <ul class="skill-list">
+                        <h3>💡 Soft Skills</h3>
+                        <ul>
                             <li>Creative Problem-Solving</li>
                             <li>Team Collaboration</li>
                             <li>Project Planning</li>
@@ -491,146 +276,48 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="section">
-                <h3 class="section-title">Professional Experience</h3>
-                
-                <div class="experience-item">
-                    <div class="job-title">Game Developer</div>
-                    <div class="company-info">Digital Pen</div>
-                    <div class="job-duration">October 2024 – Present</div>
-                    <ul class="job-description">
-                        <li>Collaborate with the design team to implement engaging gameplay mechanics, features, and levels</li>
-                        <li>Write, test, and refine high-performance C# code to ensure smooth gameplay and efficient memory usage</li>
-                        <li>Develop and integrate key game features including AI, physics, and interactive UI elements in Unity</li>
-                        <li>Identify, troubleshoot, and resolve bugs to maintain game stability and enhance user experience</li>
-                    </ul>
-                </div>
-
-                <div class="experience-item">
-                    <div class="job-title">Unity Developer</div>
-                    <div class="company-info">ArabTesting</div>
-                    <div class="job-duration">July 2023 – October 2024</div>
-                    <ul class="job-description">
-                        <li>Designed and implemented engaging gameplay features and VR/AR experiences using Unity</li>
-                        <li>Developed and optimized cross-platform mobile games for iOS and Android</li>
-                        <li>Integrated 3D assets into Unity for games and simulations, and optimized code for smooth performance</li>
-                        <li>Implemented AI for NPCs and enemies to enhance game dynamics</li>
-                        <li>Managed source code with Git for effective team collaboration</li>
-                    </ul>
-                </div>
-
-                <div class="experience-item">
-                    <div class="job-title">IT Specialist</div>
-                    <div class="company-info">MakePlace (Urban Development)</div>
-                    <div class="job-duration">December 2022 – March 2023</div>
-                    <ul class="job-description">
-                        <li>Managed IT infrastructure, including system upgrades, data security, and backups</li>
-                        <li>Troubleshot hardware and software issues to ensure operational continuity</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section">
-                <h3 class="section-title">Education</h3>
-                
-                <div class="education-item">
-                    <div class="degree">Diploma in XR Development</div>
-                    <div class="institution">Information Technology Institute (ITI)</div>
-                    <div class="graduation-year">March 2023 – July 2023</div>
-                </div>
-
-                <div class="education-item">
-                    <div class="degree">Diploma in Business Information Systems</div>
-                    <div class="institution">Helwan University</div>
-                    <div class="graduation-year">October 2022 – July 2023</div>
-                </div>
-
-                <div class="education-item">
-                    <div class="degree">Bachelor of Commerce, Management Information Systems</div>
-                    <div class="institution">Modern Academy</div>
-                    <div class="graduation-year">September 2016 – July 2020</div>
-                    <div style="margin-top: 5px; font-style: italic; color: #666;">
-                        <strong>Graduation Project:</strong> Mobile and Web Application for College Student Attendance (Grade: Excellent)
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h3 class="section-title">Certifications & Professional Development</h3>
-                <ul class="certifications">
-                    <li>
-                        <div class="cert-name">Agile Project Management</div>
-                        <div class="cert-issuer">Coursera</div>
-                        <div class="cert-date">June 2023</div>
-                    </li>
-                    <li>
-                        <div class="cert-name">Crash Course on Python</div>
-                        <div class="cert-issuer">Coursera</div>
-                        <div class="cert-date">August 2022</div>
-                    </li>
-                    <li>
-                        <div class="cert-name">RPA Development Courses (Multiple)</div>
-                        <div class="cert-issuer">UiPath</div>
-                        <div class="cert-date">February 2022</div>
-                    </li>
-                    <li>
-                        <div class="cert-name">Full Stack Web Development Diploma</div>
-                        <div class="cert-issuer">Rout Academy</div>
-                        <div class="cert-date">January 2018</div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="section">
-                <h3 class="section-title">Portfolio</h3>
-                <div class="video-preview-grid">
-                    <div class="video-preview-item">
-                        <div class="video-preview-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/VR%20simulate/SEC%20PowerRestorationDistribution.mp4" type="video/mp4">
-                            </video>
+            <section class="projects">
+                <h2>Selected Projects</h2>
+                <div class="projects-card">
+                    <p style="color:var(--muted);margin-bottom:12px;">VR simulations and game demos from my portfolio.</p>
+                    <div class="video-preview-grid">
+                        <div class="video-preview-item">
+                            <div class="video-preview-wrapper" id="preview-video-1"></div>
+                            <div class="video-caption">SEC Power Restoration — VR Simulate</div>
                         </div>
-                        <div class="video-caption">SEC Power Restoration — VR Simulate</div>
-                    </div>
-                    <div class="video-preview-item">
-                        <div class="video-preview-wrapper">
-                            <video controls preload="metadata">
-                                <source src="portfolio/MVP/jump.mp4" type="video/mp4">
-                            </video>
+                        <div class="video-preview-item">
+                            <div class="video-preview-wrapper" id="preview-video-2"></div>
+                            <div class="video-caption">Jump — MVP Gameplay</div>
                         </div>
-                        <div class="video-caption">Jump — MVP Gameplay</div>
+                    </div>
+                    <div class="btn-container">
+                        <a href="builds.html" class="btn btn-primary">View full portfolio →</a>
                     </div>
                 </div>
-                <a href="builds.html" class="see-more-videos">View full portfolio →</a>
-            </div>
+            </section>
+
         </div>
+
+        <footer>
+            Built with ❤️ by Moataz Sherif · <span id="year"></span>
+        </footer>
     </div>
+
     <script>
+        var PORTFOLIO_PREVIEW_IDS = [ "XNKIoyXmVgw", "qt2zxsBpT2Y" ];
         (function() {
-            var KEY = 'cv-layout-width';
-            var fullBtn = document.getElementById('btn-full');
-            var normalBtn = document.getElementById('btn-normal');
-            function setLayout(full) {
-                if (full) {
-                    document.body.classList.add('layout-full');
-                    fullBtn.classList.add('active');
-                    normalBtn.classList.remove('active');
-                    try { localStorage.setItem(KEY, 'full'); } catch (e) {}
-                } else {
-                    document.body.classList.remove('layout-full');
-                    normalBtn.classList.add('active');
-                    fullBtn.classList.remove('active');
-                    try { localStorage.setItem(KEY, 'normal'); } catch (e) {}
-                }
+            var w1 = document.getElementById("preview-video-1");
+            var w2 = document.getElementById("preview-video-2");
+            if (w1 && PORTFOLIO_PREVIEW_IDS[0]) {
+                w1.innerHTML = '<iframe src="https://www.youtube.com/embed/' + PORTFOLIO_PREVIEW_IDS[0] + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
             }
-            fullBtn.addEventListener('click', function() { setLayout(true); });
-            normalBtn.addEventListener('click', function() { setLayout(false); });
-            try {
-                if (localStorage.getItem(KEY) === 'full') setLayout(true);
-            } catch (e) {}
+            if (w2 && PORTFOLIO_PREVIEW_IDS[1]) {
+                w2.innerHTML = '<iframe src="https://www.youtube.com/embed/' + PORTFOLIO_PREVIEW_IDS[1] + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            }
         })();
+        document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
