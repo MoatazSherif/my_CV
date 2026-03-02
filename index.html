@@ -28,8 +28,11 @@
             border: 2px solid var(--border);
             background: var(--card);
             box-shadow: 0 0 12px rgba(255,255,255,0.05);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 28px; font-weight: 700; color: var(--primary);
+            overflow: hidden;
+        }
+        .logo img {
+            width: 100%; height: 100%;
+            object-fit: cover;
         }
         h1 { font-size: clamp(22px, 3.5vw, 32px); color: var(--accent); }
         p.lead { color: var(--muted); margin-top: 4px; }
@@ -193,7 +196,7 @@
     <div class="container">
         <header>
             <div class="brand">
-                <div class="logo">MS</div>
+                <div class="logo"><img src="UI/moataz.jpg" alt="Moataz Sherif"></div>
                 <div>
                     <h1>Moataz Sherif Salah EL-Sharaby</h1>
                     <p class="lead">VR & Game Developer · Unity · XR · Mobile</p>
