@@ -99,7 +99,7 @@
         .skills h2 { margin-bottom: 20px; font-size: 24px; color: #fff; text-align: center; }
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
             gap: 20px;
         }
         .skill-category {
@@ -188,7 +188,18 @@
         }
         @media (max-width: 768px) {
             .video-preview-grid { grid-template-columns: 1fr; }
-            header { flex-direction: column; align-items: flex-start; }
+            header { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .about, .skills, .projects-card { padding: 16px; }
+            .skills h2, .projects h2 { font-size: 20px; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 0 12px; }
+            .logo { width: 60px; height: 60px; }
+            h1 { font-size: 20px; }
+            .about, .skills, .projects-card { padding: 12px; }
+            .btn { padding: 8px 14px; font-size: 14px; }
+            .nav-icon { width: 32px; height: 32px; }
+            .nav-icon svg { width: 18px; height: 18px; }
         }
     </style>
 </head>
@@ -198,7 +209,7 @@
             <div class="brand">
                 <div class="logo"><img src="UI/moataz.jpg" alt="Moataz Sherif"></div>
                 <div>
-                    <h1>Moataz Sherif Salah EL-Sharaby</h1>
+                    <h1>Moataz Sherif EL-Sharaby</h1>
                     <p class="lead">VR & Game Developer · Unity · XR · Mobile</p>
                 </div>
             </div>
