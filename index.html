@@ -178,6 +178,42 @@
         }
         .video-caption { padding: 12px; font-size: 14px; color: var(--accent); }
         .btn-container { margin-top: 20px; text-align: center; }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .game-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        .game-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+        .game-card h3 { color: #fff; font-size: 1.05em; }
+        .game-card p { color: var(--muted); font-size: 0.9em; flex: 1; }
+        .game-card .play-btn {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 8px 14px;
+            border-radius: 8px;
+            background: linear-gradient(145deg, #4dabf7, #228be6);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        .game-card .play-btn:hover {
+            background: linear-gradient(145deg, #64c0ff, #339af0);
+        }
         footer {
             text-align: center;
             margin-top: 50px;
@@ -313,6 +349,17 @@
                 </div>
             </section>
 
+            <section class="projects" id="playable-games">
+                <h2>Playable Games</h2>
+                <div class="projects-card">
+                    <p style="color:var(--muted);margin-bottom:12px;">MVP WebGL builds — play in browser.</p>
+                    <div class="games-grid" id="games-preview-grid"></div>
+                    <div class="btn-container">
+                        <a href="builds.html#playable-games" class="btn btn-primary">View all playable games →</a>
+                    </div>
+                </div>
+            </section>
+
         </div>
 
         <footer>
@@ -322,6 +369,24 @@
 
     <script>
         var PORTFOLIO_PREVIEW_IDS = [ "XNKIoyXmVgw", "qt2zxsBpT2Y" ];
+        // Fixed list — folder must match GitHub Pages folder under MVP Games.
+        // Home shows first 3; full list is on builds.html.
+        var PLAYABLE_GAMES = [
+            { title: "BUKBUK", folder: "BUKBUK", desc: "MVP gameplay demo." },
+            { title: "Card Match Memory", folder: "Card Match Memory", desc: "Memory matching game." },
+            { title: "Croquet", folder: "Croquet", desc: "Croquet MVP demo." },
+            { title: "Fish Catching", folder: "Fish Catching", desc: "Fishing gameplay demo." },
+            { title: "Jump", folder: "jump", desc: "Jump mechanic demo." },
+            { title: "Jump One", folder: "Jump One", desc: "Jump One MVP." },
+            { title: "Match One", folder: "Match One", desc: "Match One puzzle demo." },
+            { title: "NiceGuess", folder: "NiceGuess", desc: "Guessing game MVP." },
+            { title: "ShapeChange", folder: "ShapeChange", desc: "Shape change gameplay." },
+            { title: "Shapes Game", folder: "shapes game", desc: "Shapes matching demo." },
+            { title: "Sorting Puzzle", folder: "Sorting Puzzle", desc: "Sorting puzzle MVP." },
+            { title: "Thief Hiding", folder: "Thief hiding", desc: "Thief hiding gameplay." }
+        ];
+        var GAMES_BASE_URL = "https://moatazsherif.github.io/Builds/MVP%20Games/";
+
         (function() {
             var w1 = document.getElementById("preview-video-1");
             var w2 = document.getElementById("preview-video-2");
@@ -330,6 +395,18 @@
             }
             if (w2 && PORTFOLIO_PREVIEW_IDS[1]) {
                 w2.innerHTML = '<iframe src="https://www.youtube.com/embed/' + PORTFOLIO_PREVIEW_IDS[1] + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            }
+
+            var gamesGrid = document.getElementById("games-preview-grid");
+            if (gamesGrid) {
+                gamesGrid.innerHTML = PLAYABLE_GAMES.slice(0, 3).map(function(g) {
+                    var url = GAMES_BASE_URL + encodeURIComponent(g.folder) + "/";
+                    return '<div class="game-card">' +
+                        '<h3>' + g.title + '</h3>' +
+                        '<p>' + (g.desc || "") + '</p>' +
+                        '<a class="play-btn" href="' + url + '" target="_blank" rel="noopener">Play →</a>' +
+                        '</div>';
+                }).join("");
             }
         })();
         document.getElementById("year").textContent = new Date().getFullYear();

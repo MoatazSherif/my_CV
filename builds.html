@@ -80,6 +80,44 @@
             margin-bottom: 16px;
             text-shadow: 0 0 8px rgba(77,171,247,0.6);
         }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+            gap: 20px;
+            margin-top: 16px;
+        }
+        .game-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .game-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 26px rgba(0,0,0,0.8);
+        }
+        .game-card h3 { color: #fff; font-size: 1.1em; }
+        .game-card p { color: var(--muted); font-size: 0.9em; flex: 1; }
+        .game-card .play-btn {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: linear-gradient(145deg, #4dabf7, #228be6);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: background 0.2s;
+        }
+        .game-card .play-btn:hover {
+            background: linear-gradient(145deg, #64c0ff, #339af0);
+        }
         .width-toggle {
             position: fixed;
             top: 12px;
@@ -151,9 +189,45 @@
                 <h3>MVP</h3>
                 <div class="video-grid" id="mvp-grid"></div>
             </div>
+
+            <div class="video-subsection" id="playable-games">
+                <h3>Playable Games</h3>
+                <p style="color:var(--muted);margin-bottom:8px;">WebGL MVP builds — open and play in browser.</p>
+                <div class="games-grid" id="games-grid"></div>
+            </div>
         </div>
     </div>
     <script>
+        // Fixed list of playable games (folder name must match GitHub Pages folder under MVP Games).
+        var PLAYABLE_GAMES = [
+            { title: "BUKBUK", folder: "BUKBUK", desc: "MVP gameplay demo." },
+            { title: "Card Match Memory", folder: "Card Match Memory", desc: "Memory matching game." },
+            { title: "Croquet", folder: "Croquet", desc: "Croquet MVP demo." },
+            { title: "Fish Catching", folder: "Fish Catching", desc: "Fishing gameplay demo." },
+            { title: "Jump", folder: "jump", desc: "Jump mechanic demo." },
+            { title: "Jump One", folder: "Jump One", desc: "Jump One MVP." },
+            { title: "Match One", folder: "Match One", desc: "Match One puzzle demo." },
+            { title: "NiceGuess", folder: "NiceGuess", desc: "Guessing game MVP." },
+            { title: "ShapeChange", folder: "ShapeChange", desc: "Shape change gameplay." },
+            { title: "Shapes Game", folder: "shapes game", desc: "Shapes matching demo." },
+            { title: "Sorting Puzzle", folder: "Sorting Puzzle", desc: "Sorting puzzle MVP." },
+            { title: "Thief Hiding", folder: "Thief hiding", desc: "Thief hiding gameplay." }
+        ];
+        var GAMES_BASE_URL = "https://moatazsherif.github.io/Builds/MVP%20Games/";
+
+        function renderPlayableGames(containerId) {
+            var container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = PLAYABLE_GAMES.map(function(g) {
+                var url = GAMES_BASE_URL + encodeURIComponent(g.folder) + "/";
+                return '<div class="game-card">' +
+                    '<h3>' + g.title + '</h3>' +
+                    '<p>' + (g.desc || "") + '</p>' +
+                    '<a class="play-btn" href="' + url + '" target="_blank" rel="noopener">Play →</a>' +
+                    '</div>';
+            }).join("");
+        }
+
         // Paste your YouTube video IDs here (from youtube.com/watch?v=VIDEO_ID). Leave "" to hide that slot.
         var PORTFOLIO_VIDEOS = {
             vrSimulate: [
@@ -193,6 +267,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             renderVideoGrid("vr-grid", PORTFOLIO_VIDEOS.vrSimulate);
             renderVideoGrid("mvp-grid", PORTFOLIO_VIDEOS.mvp);
+            renderPlayableGames("games-grid");
         });
     </script>
     <script>
